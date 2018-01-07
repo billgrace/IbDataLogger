@@ -491,10 +491,13 @@ def ProcessDaySegmentStateMachine():
 			IbDataLogger.StopTrackingTheMarket()
 	elif SharedVars.CurrentDaySegment == IbDataLoggerEnums.DaySegment['WaitingForTomorrow']:
 		# It's either not a trading day or the market has already closed so we're just waiting for tomorrow to come along
-		# #  ... Add-a-bandaid December 19, 2017: reboot every day since I can't figure out what's getting clogged up and
-		# #  ...  preventing proper data capture when we run for longer than a day.
-		# CurrentTimeOfDay = datetime.datetime.now()
-		# if 1 == CompareHourMinute(CurrentTimeOfDay.hour, CurrentTimeOfDay.minute, SharedVars.RebootMyselfTimeHour, SharedVars.RebootMyselfTimeMinute):
+		#  ... Add-a-bandaid December 19, 2017: reboot every day since I can't figure out what's getting clogged up and
+		#  ...  preventing proper data capture when we run for longer than a day.
+		CurrentTimeOfDay = datetime.datetime.now()
+		if 1 == CompareHourMinute(CurrentTimeOfDay.hour, CurrentTimeOfDay.minute, SharedVars.RebootMyselfTimeHour, SharedVars.RebootMyselfTimeMinute):
+		# ... well, the 'boot myself' process below doesn't seem to work so let's just exit this
+		# ...  python script and try to get the Automator to do a scheduled restart after that.
+			ExitGui()
 		# 	IbDataLoggerUtilities.RebootMyself()
 		# We recognize the transition through midnight by the numerical day of the month changing
 		CurrentTime = datetime.datetime.now()

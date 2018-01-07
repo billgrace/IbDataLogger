@@ -33,7 +33,7 @@ TradingDayStartTimeMinute = 29
 TradingDayEndTimeHour = 13
 TradingDayEndTimeMinute = 0
 RebootMyselfTimeHour = 14
-RebootMyselfTimeMinute = 30
+RebootMyselfTimeMinute = 10
 
 # TWS connection parameters
 TwsPreferredClientId = 1
